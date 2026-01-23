@@ -1,4 +1,4 @@
-use eta_core::runner::runner;
+use eta_core::basic::runner;
 
 fn main() {
     let mut args = std::env::args();

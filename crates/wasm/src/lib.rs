@@ -1,4 +1,4 @@
-use eta_core::runner::runner;
+use eta_core::basic::runner;
 
 use wasm_bindgen::prelude::wasm_bindgen;
 
