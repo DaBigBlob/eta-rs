@@ -17,12 +17,13 @@ make -C crates/wasm deploy # this auto builds first then deploys to cf workers
 
 ## CLI (Native)
 ### Use
+```bash
+cli S-PAIR # usually under target/release/cli after build (below)
 ```
-cli S-PAIR
-```
+> Note: --target may be specified for crosscompilation
 
 ### Build
-```
+```bash
 cargo build -p cli --release
 ```
 
