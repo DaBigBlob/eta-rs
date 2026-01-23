@@ -7,4 +7,4 @@ codegen-units = 1
 lto = true
 
 [workspace.dependencies]
-eta-core = { path = "../eta-core" }
+eta-core = "0.2"
