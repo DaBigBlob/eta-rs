@@ -7,5 +7,4 @@ edition = "2024"
 crate-type = ["cdylib"]
 
 [dependencies]
-eta-core = { path = "../../../eta-core" }
 wasm-bindgen = { version = "0.2.108", default-features = false }
