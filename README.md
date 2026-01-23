@@ -15,7 +15,7 @@ cargo build -p wasm --target wasm32-unknown-unknown --release
 make -C crates/wasm deploy # this auto builds first then deploys to cf workers
 ```
 
-## CLI (Native)
+## CLI
 ### Use
 ```bash
 cli S-PAIR # usually under target/release/cli after build (below)
