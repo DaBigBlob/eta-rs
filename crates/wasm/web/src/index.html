@@ -3,61 +3,85 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <title>ETA REPL</title>
+
+    <!-- Primary SEO -->
+    <meta name="description" content="Evaluate ETA expressions in the browser (WASM)." />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://0xe.io/" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" sizes="any" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%3E%3Cpath%20d%3D%22M3%2018H7M10%2018H21M5%2021H12M16%2021H19M8.8%2015C6.14903%2015%204%2012.9466%204%2010.4137C4%208.31435%205.6%206.375%208%206C8.75283%204.27403%2010.5346%203%2012.6127%203C15.2747%203%2017.4504%204.99072%2017.6%207.5C19.0127%208.09561%2020%209.55741%2020%2011.1402C20%2013.2719%2018.2091%2015%2016%2015L8.8%2015Z%22%20stroke%3D%22%23000000%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E">
+
+    <!-- Theme color -->
+    <meta name="theme-color" content="#0b0c0f" />
+
+    <!-- Open Graph (social embedding) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Eta" />
+    <meta property="og:description" content="Evaluate ETA expressions in the browser (WASM)." />
+    <meta property="og:url" content="https://0xe.io/" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Eta" />
+    <meta name="twitter:description" content="Evaluate ETA expressions in the browser (WASM)." />
+
+    <title>ETA Runner</title>
     <style>
-      body { font-family: system-ui, -apple-system, Segoe UI, sans-serif; margin: 24px; }
-      textarea { width: 100%; height: 6em; font: 14px ui-monospace, monospace; padding: 10px; }
-      pre { white-space: pre-wrap; font: 14px ui-monospace, monospace; border: 1px solid #ddd; padding: 12px; }
-      button { padding: 8px 12px; }
-      .row { display: flex; gap: 10px; margin: 10px 0; }
+      :root { color-scheme: light dark; }
+      * { box-sizing: border-box; }
+      html, body { height: 100%; margin: 0; }
+      body { font-family: system-ui, -apple-system, Segoe UI, sans-serif; }
+
+      .wrap {
+        height: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+        padding: 12px;
+      }
+
+      textarea {
+        width: 100%;
+        height: 100%;
+        resize: none;
+        padding: 12px;
+        font: 13px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      }
+
+      #out { cursor: pointer; }
+      #out:active { opacity: 0.9; }
     </style>
   </head>
   <body>
-    <div class="row">
-      <button id="run">Run</button>
-      <button id="clear">Clear</button>
-    </div>
-    <pre id="out"></pre>
-    <textarea id="in" placeholder="Expression (Enter to run, Shift+Enter for newline)"></textarea>
+    <noscript>
+      <div style="position: fixed; inset: 0; padding: 24px; display: grid; place-items: center; font-family: system-ui, -apple-system, Segoe UI, sans-serif;">
+        <div style="padding:12px;font-family:system-ui">
+          This page requires JavaScript to work. Unbased I know, but this is the state of WASM right now.
+        </div>
+      </div>
+    </noscript>
 
+    <div class="wrap">
+      <textarea id="in" spellcheck="false" placeholder="Eta s-expression (s-pair) here."></textarea>
+      <textarea id="out" spellcheck="false" readonly placeholder="Click/Tap here to run."></textarea>
+    </div>
 
     <script type="module">
-      import init, { greet_me, eta_runner } from "./eta.js";
+      if (typeof WebAssembly === "undefined") {
+        document.querySelector(".wrap").innerHTML = `
+          <div style="grid-column:1/-1;padding:12px;font-family:system-ui">
+            This browser does not support WebAssembly.
+            Try a newer Safari/Chrome/Firefox/Edge.
+          </div>`;
+      } else {
+        const { default: init, eta_runner } = await import("./eta.js");
+        await init();
 
-      const $in = document.getElementById("in");
-      const $out = document.getElementById("out");
-
-      function println(s) {
-        $out.textContent += s + "\n";
+        const $in = document.getElementById("in");
+        const $out = document.getElementById("out");
+        $out.onclick = () => { $out.value = eta_runner($in.value); };
       }
-
-      function run() {
-        const src = $in.value;
-        if (!src.trim()) return;
-        println("> " + src);
-        try {
-          println(eta_runner(src));
-        } catch (e) {
-          println("!! Error: " + (e?.message ?? String(e)));
-        }
-        $in.value = "";
-        $in.focus();
-      }
-
-      document.getElementById("run").onclick = run;
-      document.getElementById("clear").onclick = () => { $out.textContent = ""; $in.focus(); };
-
-      $in.addEventListener("keydown", (ev) => {
-        if (ev.key === "Enter" && !ev.shiftKey) {
-          ev.preventDefault();
-          run();
-        }
-      });
-
-      await init();
-
-      println("READY.");
-      $in.focus();
     </script>
   </body>
 </html>

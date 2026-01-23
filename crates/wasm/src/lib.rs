@@ -8,8 +8,3 @@ pub fn eta_runner(input: &str) -> String {
     basic::runner(&mut out, input);
     out
 }
-
-#[wasm_bindgen]
-pub fn greet_me(name: &str) -> String {
-    format!("Hello, {}!", name)
-}
