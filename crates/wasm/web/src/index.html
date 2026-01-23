@@ -6,11 +6,11 @@
   </head>
   <body>
     <script type="module">
-      import init, { greet_me, js_runner } from "./eta.js";
+      import init, { greet_me, eta_runner } from "./eta.js";
 
       init().then(() => {
-        alert(greet_me("soyjak"));
-        globalThis.eta_js_runner = js_runner;
+        console.log(greet_me("from WASM"));
+        globalThis.eta_runner = eta_runner;
       });
     </script>
   </body>

@@ -1,11 +1,11 @@
-use eta_core::basic::runner;
+use eta_core::basic;
 
 use wasm_bindgen::prelude::*;
 
 #[wasm_bindgen]
-pub fn js_runner(input: &str) -> String {
+pub fn eta_runner(input: &str) -> String {
     let mut out = String::new();
-    runner(&mut out, input);
+    basic::runner(&mut out, input);
     out
 }
 
