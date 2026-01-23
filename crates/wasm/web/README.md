@@ -1,0 +1,1 @@
+css+html only spiny flowery thing, hosted on cf workers, acting as the current placeholder for 0x8.io
