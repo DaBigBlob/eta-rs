@@ -1,0 +1,7 @@
+[workspace]
+members = ["crates/cli", "crates/wasm", "crates/embedded"]
+resolver = "2"
+
+[profile.release]
+codegen-units = 1
+lto = true
