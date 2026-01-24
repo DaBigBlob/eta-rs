@@ -1,6 +1,6 @@
 # Platform specific Human-Interfaces for Eta-Core
 Run Eta everywhere.
-> This is possible because Eta Core is very thing and [no_std].
+> This is possible because Eta Core is very thin thign and [no_std].
 
 # Browser (WASM)
 ### Use at https://0xE.io
