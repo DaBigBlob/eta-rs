@@ -30,9 +30,9 @@ dependencies = [
 
 [[package]]
 name = "eta-core"
-version = "0.2.3"
+version = "0.2.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e163912666b591f4b808c7698a1ab046ba8cf4cda2b0170fa32165c976a96b1f"
+checksum = "0bc0121e34194379a90bbaf2c8b7bb7fbc9ff1288be6a421057ca223420510f2"
 dependencies = [
  "hashbrown",
 ]
