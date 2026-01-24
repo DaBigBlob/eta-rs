@@ -30,9 +30,9 @@ dependencies = [
 
 [[package]]
 name = "eta-core"
-version = "0.2.4"
+version = "0.2.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0bc0121e34194379a90bbaf2c8b7bb7fbc9ff1288be6a421057ca223420510f2"
+checksum = "cfb793db7da3b1ac01823111bd07d0349fdf6ae11db587afbebb939a8f74e448"
 dependencies = [
  "hashbrown",
 ]
@@ -50,7 +50,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "841d1cc9bed7f9236f321df977030373f4a4163ae1a7dbfe1a51a2c1a51d9100"
 dependencies = [
  "foldhash",
- "rustc-std-workspace-alloc",
 ]
 
 [[package]]
@@ -76,12 +75,6 @@ checksum = "dc74d9a594b72ae6656596548f56f667211f8a97b3d4c3d467150794690dc40a"
 dependencies = [
  "proc-macro2",
 ]
-
-[[package]]
-name = "rustc-std-workspace-alloc"
-version = "1.0.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f9d441c3b2ebf55cebf796bfdc265d67fa09db17b7bb6bd4be75c509e1e8fec3"
 
 [[package]]
 name = "rustversion"
