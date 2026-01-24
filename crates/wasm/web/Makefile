@@ -12,6 +12,7 @@ www-pop: ./src/index.html ./wasm/eta_bg.wasm ./wasm/eta.js
 	${MAKE} clean
 	mkdir -p ./www
 	cp $^ ./www/
+	cp ./static/* ./www/
 
 deploy: wrangler.toml www-pop
 	${MAKE} opt-index.html
