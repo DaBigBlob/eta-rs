@@ -1,6 +1,15 @@
 [workspace]
-members = ["crates/cli", "crates/wasm", "crates/embedded"]
+members = ["crates/cli", "crates/wasm"]
 resolver = "2"
+
+[workspace.package]
+edition = "2021"
+rust-version = "1.75"
+license = "BSD-2-Clause"
+authors = ["Hans S. <hans@0x8.io>"]
+description = "Platform specific Human-Interfaces for Eta-Core"
+repository = "https://github.com/DaBigBlob/eta-rs"
+readme = "README.md"
 
 [profile.release]
 codegen-units = 1
