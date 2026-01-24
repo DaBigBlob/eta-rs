@@ -10,10 +10,14 @@ const VERSION: &str = concat!(
     "License: ", env!("CARGO_PKG_LICENSE"),
 );
 
-
-/// Run Eta on either a literal S-pair string or a file containing one.
 #[derive(Parser)]
-#[command(name = "eta", author, version = VERSION)]
+#[command(
+    name = env!("CARGO_PKG_NAME"),
+    author,
+    version = VERSION,
+    about = env!("CARGO_PKG_DESCRIPTION"),
+    long_about = env!("CARGO_PKG_DESCRIPTION"),
+)]
 struct Cli {
     /// Treat INPUT as a path to a file and read the S-pair from it
     #[arg(short, long, value_name = "PATH", conflicts_with = "input")]

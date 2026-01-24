@@ -1,5 +1,6 @@
 [package]
 name = "eta-cli"
+description = "CLI for the Eta calculus"
 version = "0.1.0"
 
 authors = { workspace = true }
