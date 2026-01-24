@@ -3,12 +3,12 @@ Run Eta everywhere.
 > This is possible because Eta Core is very thing and [no_std].
 
 # Browser (WASM)
-### Use at https://0xe.io
+### Use at https://0xE.io
 ![eta_wasm_demo](assets/eta_wasm_demo.png)
 
 ### Build
 ```
-cargo build -p wasm --target wasm32-unknown-unknown --release
+cargo build -p eta-wasm --target wasm32-unknown-unknown --release
 ```
 
 ### Deploy
@@ -17,16 +17,32 @@ make -C crates/wasm deploy # this auto builds first then deploys to cf workers
 ```
 
 # CLI
-### Use
-```bash
-cli S-PAIR # usually under target/release/cli after build (below)
+### Usage
 ```
-> Note: --target may be specified for crosscompilation
+CLI for the Eta calculus
+
+Usage: eta [OPTIONS] [S-PAIR]
+
+Arguments:
+  [S-PAIR]  Literal S-pair input (unless --file is used)
+
+Options:
+  -f, --file <PATH>  Treat INPUT as a path to a file and read the S-pair from it
+  -h, --help         Print help (see more with '--help')
+  -V, --version      Print version
+```
+
+### Installation
+```bash
+cargo install eta-cli
+```
+> Note: Binary releases will be available later.
 
 ### Build
 ```bash
-cargo build -p cli --release
+cargo build -p eta-cli --release
 ```
+> Note: `--target` may be specified for crosscompilation.
 
 # Embedded devices
 > Under heavy WIP.

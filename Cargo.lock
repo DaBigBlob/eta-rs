@@ -111,6 +111,10 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "b05b61dc5112cbb17e4b6cd61790d9845d13888356391624cbe7e41efeac1e75"
 
 [[package]]
+name = "embedded"
+version = "0.1.0"
+
+[[package]]
 name = "eta-cli"
 version = "0.1.0"
 dependencies = [
@@ -120,9 +124,9 @@ dependencies = [
 
 [[package]]
 name = "eta-core"
-version = "0.3.0"
+version = "0.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "2d5fa790b41f0f600b62080336be4ded6c5deab61d1c1cde025206ba81d33d37"
+checksum = "dcf19525da4e9bc700a5493c40fd80fae3749cebc76682858087875374645da2"
 dependencies = [
  "hashbrown",
 ]
