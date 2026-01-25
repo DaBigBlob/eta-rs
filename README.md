@@ -2,20 +2,6 @@
 Run Eta everywhere.
 > This is possible because Eta Core is very thin thign and [no_std].
 
-# Browser (WASM)
-### Use at https://0xE.io
-![eta_wasm_demo](assets/eta_wasm_demo.png)
-
-### Build
-```
-cargo build -p eta-wasm --target wasm32-unknown-unknown --release
-```
-
-### Deploy
-```bash
-make -C crates/wasm deploy # this auto builds first then deploys to cf workers
-```
-
 # CLI
 ### Usage
 ```
@@ -54,6 +40,20 @@ Why `esp32-s2`? Because that is what i had laying around.
 ```bash
 cd crates/embedded
 cargo run --release
+```
+
+# Browser (WASM)
+### Use at https://0xE.io
+![eta_wasm_demo](assets/eta_wasm_demo.png)
+
+### Build
+```
+cargo build -p eta-wasm --target wasm32-unknown-unknown --release
+```
+
+### Deploy
+```bash
+make -C crates/wasm deploy # this auto builds first then deploys to cf workers
 ```
 
 # Linux kernel driver
