@@ -55,3 +55,9 @@ Why `esp32-s2`? Because that is what i had laying around.
 cd crates/embedded
 cargo run --release
 ```
+
+# Linux kernel driver
+> Under heavy WIP.
+
+# Email server
+> Under heavy WIP.
