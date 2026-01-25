@@ -5,6 +5,6 @@ use wasm_bindgen::prelude::*;
 #[wasm_bindgen]
 pub fn eta_runner(input: &str) -> String {
     let mut out = String::new();
-    basic::runner(&mut out, input);
+    basic::execute(&mut out, input.chars().into_iter());
     out
 }

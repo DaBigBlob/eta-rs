@@ -1,7 +1,7 @@
 use std::{fs, path::PathBuf, process::ExitCode};
 
 use clap::Parser;
-use eta_core::basic::runner;
+use eta_core::basic;
 
 const VERSION: &str = concat!(
     env!("CARGO_PKG_VERSION"),
@@ -43,7 +43,7 @@ fn main() -> ExitCode {
     };
 
     let mut out = String::new();
-    runner(&mut out, &input);
+    basic::execute(&mut out, input.chars().into_iter());
     print!("{out}");
 
     ExitCode::SUCCESS
