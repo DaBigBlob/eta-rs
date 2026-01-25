@@ -84,7 +84,7 @@ fn main() -> ! {
                     write_all(&mut uart, b"\r\n");
 
                     output.clear();
-                    basic::runner(&mut output, &input);
+                    basic::execute(&mut output, input.chars().into_iter());
 
                     write_all(&mut uart, output.as_bytes());
                     write_all(&mut uart, b"\r\n> ");
