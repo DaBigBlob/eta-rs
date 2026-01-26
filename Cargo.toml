@@ -12,8 +12,12 @@ repository = "https://github.com/DaBigBlob/eta-rs"
 readme = "README.md"
 
 [profile.release]
-codegen-units = 1
-lto = true
+lto = true           # better cross-crate optimization
+codegen-units = 1    # better optimization / slower build
+panic = "abort"      # no unwinding tables / smaller
+debug = 0            # no debug info
+strip = true         # strip as much as possible
+incremental = false  # cleaner/reproducible-ish
 
 [workspace.dependencies]
 eta-core = "0.5.1"

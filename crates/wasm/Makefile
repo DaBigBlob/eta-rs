@@ -4,7 +4,10 @@
 all: wasm
 
 wasm:
-	wasm-pack build --no-typescript --target web --release --out-dir ./web/wasm --out-name eta --no-pack
+	SYSROOT="$$(rustc --print sysroot)"; \
+	CARGO_HOME="$${CARGO_HOME:-$$HOME/.cargo}"; \
+	RUSTFLAGS="--remap-path-prefix=$$HOME=~ --remap-path-prefix=$$CARGO_HOME=/cargo --remap-path-prefix=$$SYSROOT=/rust/sysroot" \
+	wasm-pack build --no-typescript --no-opt --target web --release --out-dir ./web/wasm --out-name eta --no-pack
 
 deploy: wasm
 	${MAKE} -C ./web deploy
