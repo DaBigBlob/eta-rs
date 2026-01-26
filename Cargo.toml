@@ -20,5 +20,5 @@ strip = true         # strip as much as possible
 incremental = false  # cleaner/reproducible-ish
 
 [workspace.dependencies]
-eta-core = "0.5.1"
+eta-core = "0.6.0"
 # eta-core = { path = "../eta-core" }
