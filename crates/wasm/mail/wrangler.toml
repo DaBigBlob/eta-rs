@@ -1,0 +1,23 @@
+name = "eta"
+compatibility_date = "2023-01-01"
+
+routes = [
+	{ pattern = "eta.hman.io", custom_domain = true },
+	{ pattern = "eta.0x8.io", custom_domain = true },
+	{ pattern = "0xe.io", custom_domain = true }
+]
+
+workers_dev = false
+preview_urls = false
+
+[observability]
+enabled = true
+
+[observability.logs]
+invocation_logs = true
+
+[placement]
+mode = "smart"
+
+[assets]
+directory = "./www"

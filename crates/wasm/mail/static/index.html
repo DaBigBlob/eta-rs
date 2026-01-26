@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <!-- Primary SEO -->
+     <title>Eta WASM</title>
+    <meta name="description" content="Evaluate ETA expressions in the browser (WASM)." />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href="https://0xe.io/" />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+    <!-- Theme color -->
+    <meta name="theme-color" content="#0b0c0f" />
+
+    <!-- Open Graph (social embedding) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Eta" />
+    <meta property="og:description" content="Evaluate ETA expressions in the browser (WASM)." />
+    <meta property="og:url" content="https://0xe.io/" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Eta" />
+    <meta name="twitter:description" content="Evaluate ETA expressions in the browser (WASM)." />
+
+    <style>
+      :root {
+        color-scheme: light dark;
+        font: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+        font-size: 1rem;
+      }
+      * { box-sizing: border-box; }
+      html, body { height: 100%; margin: 0; }
+
+      .wrap {
+        height: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding: 0px;
+      }
+
+      #out {
+        width: 100%;
+        height: 100%;
+        font-size: 1rem;
+        resize: none;
+        padding: clamp(0.5rem, 1vw, 1rem);
+
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        background: #0b0c0f;
+        color: #d1d5db;
+        border: 0.08em solid #2a2f3a;
+        border-radius: 0.6rem;
+      }
+
+      #in_ace {
+        width: 100%;
+        height: 100%;
+        font-size: 1rem;
+      }
+
+      #out { cursor: pointer; }
+      #out:hover {
+        outline: none;
+        border-color: #83a598;
+      }
+      #out:focus {
+        outline: none;
+        filter: brightness(1.35);
+      }
+
+      /* top bar style */
+      .right_panl {
+        height: 100%;
+        display: grid;
+        grid-template-rows: auto 1fr;
+      }
+      .topbar {
+        padding: 0 clamp(0.5rem, 1vw, 1rem);
+        text-align: center;
+        font-size: 0.7rem;
+      }
+      .topbar a {
+        color: inherit;
+        text-decoration: underline;
+        white-space: nowrap;
+      }
+
+      /* ace */
+      /* fix deep braces hilight */
+      .ace_editor .ace_marker-layer .ace_bracket {
+        border: 0.08em solid currentColor !important;
+        border-radius: 0.2em !important;
+        box-sizing: border-box !important;
+        background: rgba(255,255,255,0.12) !important;
+      }
+      /* gutter divider */
+      .ace_editor .ace_gutter {
+        border-right: 0.0625em solid #555;
+      }
+    </style>
+  </head>
+  <body>
+    <noscript>
+      <div style="background-color: black; position: fixed; inset: 0; display: grid; place-items: center;">
+        This page requires JavaScript to work. Unbased I know, but this is the state of WASM right now.
+      </div>
+    </noscript>
+
+    <div class="wrap">
+      <div id="in_ace"></div>
+      <div class="right_panl">
+        <div class="topbar">
+          Source code: &nbsp; <a href="https://github.com/DaBigBlob/eta-rs" target="_blank" rel="noopener">https://github.com/DaBigBlob/eta-rs</a> &nbsp; <a href="https://github.com/DaBigBlob/eta-core" target="_blank" rel="noopener">https://github.com/DaBigBlob/eta-core</a>
+        </div>
+        <textarea id="out" spellcheck="false" readonly placeholder="Click/Tap here to run."></textarea>
+      </div>
+    </div>
+    <script src="./eta.js"></script>
+    <script src="./ace/ace.js"></script>
+    <script src="./ace/mode-lisp.js"></script>
+    <script src="./ace/theme-gruvbox.js"></script>
+    <script>
+      if (typeof WebAssembly === "undefined") {
+        document.body.innerHTML = `
+          <div style="background-color: black; position: fixed; inset: 0; display: grid; place-items: center;">
+            This browser does not support WebAssembly. Try a newer Safari/Chrome/Firefox/Edge.
+          </div>`;
+      } else {
+        wasm_bindgen().then(() => {
+          const $out = document.getElementById("out");
+
+          const editor = ace.edit("in_ace");
+          editor.session.setMode("ace/mode/lisp");
+          editor.session.setOptions({
+            useWorker: true,
+            wrap: true,
+            wrapMethod: "code",
+            newLineMode: "unix"
+          });
+          editor.setTheme("ace/theme/gruvbox");
+          editor.setOptions({
+            showPrintMargin: false,
+            wrap: true,
+            displayIndentGuides: true,
+            highlightActiveLine: true,
+            highlightSelectedWord: true,
+            showGutter: true,
+            fixedWidthGutter: true,
+            readOnly: false,
+            enableLiveAutocompletion: true,
+            enableSnippets: true,
+            tabSize: 2,
+            navigateWithinSoftTabs: true,
+            fadeFoldWidgets: true,
+            showFoldWidgets: true,
+          });
+
+          editor.setValue(`; THIS IS LAMBDA CALCULUS EXAMPLE
+;a comment starts with ; and continues to end of line
+((E ((A A) E)) ;external capture of eta and omicron
+
+(E (; invoking eta
+(P ;capturing lambda application implementation from below
+;<---lambda expression begin--->
+
+;NOTE: as we have described,
+;   application is of form (E (P (<lambda abstraction>  <applicand>)))
+;   abstraction is of form (A (<binding variabel> <body>))
+;NOTE: alpha renaming is not a real thing, make sure to name accordingly
+
+;example 1: omega combinator
+;uncomment the following to make your stack overflow ☺️
+; (E (P (
+; (A (y (E (P (y y)))))
+; (A (y (E (P (y y)))))
+; )))
+
+;example 2: make 4 of the virus 🦠
+(E(P ((A (v ((v v) (v v)))) 🦠)))
+
+;<---lambda expression end--->
+)
+
+(;this is the lambda application implementation to be used as P
+((A (n b)) x)
+(E ((n b) x))
+)
+
+)))`, -1);
+        $out.onclick = () => {
+          $out.value = "Running...";
+            setTimeout(() => {
+              $out.value = wasm_bindgen.eta_runner(editor.getValue());
+            }, 0);
+          };
+        });
+      }
+    </script>
+  </body>
+</html>
