@@ -91,12 +91,17 @@
         white-space: nowrap;
       }
 
-      /* ace fix deep braces hilight */
+      /* ace */
+      /* fix deep braces hilight */
       .ace_editor .ace_marker-layer .ace_bracket {
         border: 0.08em solid currentColor !important;
         border-radius: 0.2em !important;
         box-sizing: border-box !important;
         background: rgba(255,255,255,0.12) !important;
+      }
+      /* gutter divider */
+      .ace_editor .ace_gutter {
+        border-right: 0.0625em solid #555;
       }
     </style>
   </head>
@@ -132,10 +137,28 @@
 
           const editor = ace.edit("in_ace");
           editor.session.setMode("ace/mode/lisp");
+          editor.session.setOptions({
+            useWorker: true,
+            wrap: true,
+            wrapMethod: "code",
+            newLineMode: "unix"
+          });
           editor.setTheme("ace/theme/gruvbox");
           editor.setOptions({
             showPrintMargin: false,
-            wrap: true
+            wrap: true,
+            displayIndentGuides: true,
+            highlightActiveLine: true,
+            highlightSelectedWord: true,
+            showGutter: true,
+            fixedWidthGutter: true,
+            readOnly: false,
+            enableLiveAutocompletion: true,
+            enableSnippets: true,
+            tabSize: 2,
+            navigateWithinSoftTabs: true,
+            fadeFoldWidgets: true,
+            showFoldWidgets: true,
           });
 
           editor.setValue(`; THIS IS LAMBDA CALCULUS EXAMPLE
@@ -151,14 +174,14 @@
 ;   abstraction is of form (A (<binding variabel> <body>))
 ;NOTE: alpha renaming is not a real thing, make sure to name accordingly
 
-;;;;;;;omega combinator;;;;;;;;
+;example 1: omega combinator
 ;uncomment the following to make your stack overflow ☺️
-;; (E (P (
-;; (A (y (E (P (y y)))))
-;; (A (y (E (P (y y)))))
-;; )))
+; (E (P (
+; (A (y (E (P (y y)))))
+; (A (y (E (P (y y)))))
+; )))
 
-; make 4 of the virus 🦠
+;example 2: make 4 of the virus 🦠
 (E(P ((A (v ((v v) (v v)))) 🦠)))
 
 ;<---lambda expression end--->
