@@ -4,7 +4,7 @@
 all: www-pop
 
 opt-index.html: ./www/index.html
-	minhtml --minify-css --minify-js -o $<.opt $<
+	minhtml --minify-css -o $<.opt $<
 	mv $<.opt $<
 
 opt-wasm: ./www/eta_bg.wasm
@@ -15,7 +15,7 @@ www-pop: ./src/index.html ./wasm/eta_bg.wasm ./wasm/eta.js
 	${MAKE} clean
 	mkdir -p ./www
 	cp $^ ./www/
-	cp ./static/* ./www/
+	cp -r ./static/* ./www/
 
 deploy: wrangler.toml www-pop
 	${MAKE} opt-index.html

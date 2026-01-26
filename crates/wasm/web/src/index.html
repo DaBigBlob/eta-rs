@@ -30,8 +30,9 @@
     <style>
       :root {
         color-scheme: light dark;
-        font: 13px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
         font-family: system-ui, -apple-system, Segoe UI, sans-serif;
+        font-size: 1rem;
       }
       * { box-sizing: border-box; }
       html, body { height: 100%; margin: 0; }
@@ -43,11 +44,17 @@
         padding: 0px;
       }
 
-      #in, #out {
+      #out {
         width: 100%;
         height: 100%;
         resize: none;
-        padding: 12px;
+        padding: clamp(0.5rem, 1vw, 1rem);
+
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        background: #0b0c0f;
+        color: #d1d5db;
+        border: 0.08em solid #2a2f3a;
+        border-radius: 0.6rem;
       }
 
       #out { cursor: pointer; }
@@ -60,13 +67,22 @@
         grid-template-rows: auto 1fr;
       }
       .topbar {
-        padding: 0px 12px 0 12px;
+        padding: 0 clamp(0.5rem, 1vw, 1rem);
         text-align: center;
-        font-size: 12px;
+        font-size: 0.7rem;
       }
       .topbar a {
         color: inherit;
         text-decoration: underline;
+        white-space: nowrap;
+      }
+
+      /* ace fix deep braces hilight */
+      .ace_editor .ace_marker-layer .ace_bracket {
+        border: 0.08em solid currentColor !important;
+        border-radius: 0.2em !important;
+        box-sizing: border-box !important;
+        background: rgba(255,255,255,0.12) !important;
       }
     </style>
   </head>
@@ -78,8 +94,37 @@
     </noscript>
 
     <div class="wrap">
-      <textarea id="in" spellcheck="false" placeholder="Eta s-expression (s-pair) here.">
-; THIS IS LAMBDA CALCULUS EXAMPLE
+      <div id="in_ace" style="width:100%; height:100%;"></div>
+      <div class="right_panl">
+        <div class="topbar">
+          Source code: &nbsp; <a href="https://github.com/DaBigBlob/eta-rs" target="_blank" rel="noopener">https://github.com/DaBigBlob/eta-rs</a> &nbsp; <a href="https://github.com/DaBigBlob/eta-core" target="_blank" rel="noopener">https://github.com/DaBigBlob/eta-core</a>
+        </div>
+        <textarea id="out" spellcheck="false" readonly placeholder="Click/Tap here to run."></textarea>
+      </div>
+    </div>
+    <script src="./eta.js"></script>
+    <script src="./ace/ace.js"></script>
+    <script src="./ace/mode-lisp.js"></script>
+    <script src="./ace/theme-gruvbox.js"></script>
+    <script>
+      if (typeof WebAssembly === "undefined") {
+        document.body.innerHTML = `
+          <div style="background-color: black; position: fixed; inset: 0; display: grid; place-items: center;">
+            This browser does not support WebAssembly. Try a newer Safari/Chrome/Firefox/Edge.
+          </div>`;
+      } else {
+        wasm_bindgen().then(() => {
+          const $out = document.getElementById("out");
+
+          const editor = ace.edit("in_ace");
+          editor.session.setMode("ace/mode/lisp");
+          editor.setTheme("ace/theme/gruvbox");
+          editor.setOptions({
+            showPrintMargin: false,
+            wrap: true
+          });
+
+          editor.setValue(`; THIS IS LAMBDA CALCULUS EXAMPLE
 ;a comment starts with ; and continues to end of line
 ((E ((A A) E)) ;external capture of eta and omicron
 
@@ -110,29 +155,14 @@
 (E ((n b) x))
 )
 
-)))
-      </textarea>
-      <div class="right_panl">
-        <div class="topbar">
-          This UI: <a href="https://github.com/DaBigBlob/eta-rs" target="_blank" rel="noopener">https://github.com/DaBigBlob/eta-rs</a> &nbsp; Eta: <a href="https://github.com/DaBigBlob/eta-core" target="_blank" rel="noopener">https://github.com/DaBigBlob/eta-core</a>
-        </div>
-        <textarea id="out" spellcheck="false" readonly placeholder="Click/Tap here to run."></textarea>
-      </div>
-    </div>
-
-    <script type="module">
-      if (typeof WebAssembly === "undefined") {
-        document.body.innerHTML = `
-          <div style="background-color: black; position: fixed; inset: 0; display: grid; place-items: center;">
-            This browser does not support WebAssembly. Try a newer Safari/Chrome/Firefox/Edge.
-          </div>`;
-      } else {
-        const { default: init, eta_runner } = await import("./eta.js");
-        await init();
-
-        const $in = document.getElementById("in");
-        const $out = document.getElementById("out");
-        $out.onclick = () => { $out.value = eta_runner($in.value); };
+)))`, -1);
+        $out.onclick = () => {
+          $out.value = "Running...";
+            setTimeout(() => {
+              $out.value = wasm_bindgen.eta_runner(editor.getValue());
+            }, 0);
+          };
+        });
       }
     </script>
   </body>
