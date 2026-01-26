@@ -11,7 +11,7 @@ opt-wasm: ./www/eta_bg.wasm
 	wasm-opt -O --strip-dwarf --strip-producers --dce --coalesce-locals --enable-bulk-memory-opt -o $<.opt $<
 	mv $<.opt $<
 
-www-pop: ../wasm-pkg ./static ./3rd-party
+www-pop: ../wasm-pkg/web ./static ./3rd-party
 	${MAKE} clean
 	mkdir -p ./www
 	for d in $^; do cp -r $$d/* ./www/; done
