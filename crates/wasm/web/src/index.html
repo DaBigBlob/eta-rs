@@ -78,7 +78,40 @@
     </noscript>
 
     <div class="wrap">
-      <textarea id="in" spellcheck="false" placeholder="Eta s-expression (s-pair) here."></textarea>
+      <textarea id="in" spellcheck="false" placeholder="Eta s-expression (s-pair) here.">
+; THIS IS LAMBDA CALCULUS EXAMPLE
+;a comment starts with ; and continues to end of line
+((E ((A A) E)) ;external capture of eta and omicron
+
+(E (; invoking eta
+(P ;capturing lambda application implementation from below
+;<---lambda expression begin--->
+
+;NOTE: as we have described,
+;   application is of form (E (P (<lambda abstraction>  <applicand>)))
+;   abstraction is of form (A (<binding variabel> <body>))
+;NOTE: alpha renaming is not a real thing, make sure to name accordingly
+
+;;;;;;;omega combinator;;;;;;;;
+;uncomment the following to make your stack overflow ☺️
+;; (E (P (
+;; (A (y (E (P (y y)))))
+;; (A (y (E (P (y y)))))
+;; )))
+
+; make 4 of the virus 🦠
+(E(P ((A (v ((v v) (v v)))) 🦠)))
+
+;<---lambda expression end--->
+)
+
+(;this is the lambda application implementation to be used as P
+((A (n b)) x)
+(E ((n b) x))
+)
+
+)))
+      </textarea>
       <div class="right_panl">
         <div class="topbar">
           This UI: <a href="https://github.com/DaBigBlob/eta-rs" target="_blank" rel="noopener">https://github.com/DaBigBlob/eta-rs</a> &nbsp; Eta: <a href="https://github.com/DaBigBlob/eta-core" target="_blank" rel="noopener">https://github.com/DaBigBlob/eta-core</a>
