@@ -1,4 +1,3 @@
-; THIS IS LAMBDA CALCULUS EXAMPLE
 ;a comment starts with ; and continues to end of line
 ((E ((A A) E)) ;external capture of eta and omicron
 
