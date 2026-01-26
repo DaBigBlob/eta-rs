@@ -631,7 +631,7 @@ dependencies = [
 
 [[package]]
 name = "eta-cli"
-version = "0.1.7"
+version = "0.1.8"
 dependencies = [
  "clap",
  "eta-core",
@@ -639,9 +639,9 @@ dependencies = [
 
 [[package]]
 name = "eta-core"
-version = "0.5.1"
+version = "0.5.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "28016b9e2a30b67e1847666db6d0b0b0eb36dc8114d3f76e9e68eb8df089afac"
+checksum = "7d50aee0e701e9e1ab6053c5f6668aa9c0e17273fe7763ba441ea94d8810ad14"
 dependencies = [
  "hashbrown",
  "thiserror",
