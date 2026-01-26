@@ -15,7 +15,9 @@ www-pop: ./src/index.html ./wasm/eta_bg.wasm ./wasm/eta.js
 	${MAKE} clean
 	mkdir -p ./www
 	cp $^ ./www/
+	cp -r ./3rd-party/* ./www/
 	cp -r ./static/* ./www/
+	find ./www/ -name LICENSE -type f -delete
 
 deploy: wrangler.toml www-pop
 	${MAKE} opt-index.html
