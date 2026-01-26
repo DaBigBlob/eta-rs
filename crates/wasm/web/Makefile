@@ -11,12 +11,11 @@ opt-wasm: ./www/eta_bg.wasm
 	wasm-opt -O --strip-dwarf --strip-producers --dce --coalesce-locals --enable-bulk-memory-opt -o $<.opt $<
 	mv $<.opt $<
 
-www-pop: ./src/index.html ./wasm/eta_bg.wasm ./wasm/eta.js
+www-pop: ./wasm ./static ./3rd-party
 	${MAKE} clean
 	mkdir -p ./www
-	cp $^ ./www/
-	cp -r ./3rd-party/* ./www/
-	cp -r ./static/* ./www/
+	for d in $^; do cp -r $$d/* ./www/; done
+	find ./www/ -name .gitignore -type f -delete
 	find ./www/ -name LICENSE -type f -delete
 
 deploy: wrangler.toml www-pop
