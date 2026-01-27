@@ -59,7 +59,6 @@ make -C crates/wasm deploy-web # this auto builds first then deploys to cf worke
 # Email Server (CF Worker) [WASM]
 ### Email to [eval@0xE.io](mailto:eval@0xE.io)
 ![eta_wasm_demo](assets/eta_email_demo.png)
-⚠️ **Note**: The reply may be placed in your junk folder.
 
 ### Build
 ```
