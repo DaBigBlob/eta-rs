@@ -1,6 +1,5 @@
 # Platform specific Human-Interfaces for Eta-Core
-Run Eta everywhere.
-> This is possible because Eta Core is very thin thign and [no_std].
+Run [Eta](https://github.com/DaBigBlob/eta-core) everywhere.
 
 # CLI [native]
 ### Usage
