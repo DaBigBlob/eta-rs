@@ -1,11 +1,9 @@
-name = "eta"
-compatibility_date = "2023-01-01"
+name = "eta-mail"
 
-routes = [
-	{ pattern = "eta.hman.io", custom_domain = true },
-	{ pattern = "eta.0x8.io", custom_domain = true },
-	{ pattern = "0xe.io", custom_domain = true }
-]
+main = "./src/main.js"
+minify = true
+
+compatibility_date = "2023-01-01"
 
 workers_dev = false
 preview_urls = false
@@ -18,6 +16,3 @@ invocation_logs = true
 
 [placement]
 mode = "smart"
-
-[assets]
-directory = "./www"

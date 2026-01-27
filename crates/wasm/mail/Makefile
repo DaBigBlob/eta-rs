@@ -1,30 +1,23 @@
 
 .PHONY: deploy clean all
 
-all: www-pop
+all: wasm
 
-opt-index.html: ./www/index.html
-	minhtml --minify-css -o $<.opt $<
-	mv $<.opt $<
-
-opt-wasm: ./www/eta_bg.wasm
+opt-wasm: ./wasm/eta_bg.wasm
 	wasm-opt -O --strip-dwarf --strip-producers --dce --coalesce-locals --enable-bulk-memory-opt -o $<.opt $<
 	mv $<.opt $<
 
-www-pop: ../wasm-pkg ./static ./3rd-party
+wasm: ../wasm-pkg/mail
 	${MAKE} clean
-	mkdir -p ./www
-	for d in $^; do cp -r $$d/* ./www/; done
-	find ./www/ -name .gitignore -type f -delete
-	find ./www/ -name LICENSE -type f -delete
+	mkdir -p ./wasm
+	cp -r $^/* ./wasm/
 
-deploy: wrangler.toml www-pop
-	${MAKE} opt-index.html
+deploy: wrangler.toml wasm
 	${MAKE} opt-wasm
 	wrangler deploy
 
 clean:
-	rm -rf ./www || true
+	rm -rf ./wasm || true
 
 # alias
 d: deploy

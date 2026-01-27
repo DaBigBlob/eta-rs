@@ -10,7 +10,7 @@ wasm-pkg:
 	CARGO_HOME="$${CARGO_HOME:-$$HOME/.cargo}"; \
 	RUSTFLAGS="--remap-path-prefix=$$HOME=~ --remap-path-prefix=$$CARGO_HOME=/cargo --remap-path-prefix=$$SYSROOT=/rust/sysroot" \
 	wasm-pack build --no-typescript --no-opt --target no-modules --release --out-dir ./wasm-pkg/web --out-name eta --no-pack; \
-	wasm-pack build --no-opt --target bundler --release --out-dir ./wasm-pkg/mail --out-name eta
+	wasm-pack build --no-typescript --no-opt --target bundler --release --out-dir ./wasm-pkg/mail --out-name eta --no-pack
 
 deploy-web: wasm-pkg ./web
 	${MAKE} -C ./web deploy
