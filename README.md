@@ -2,7 +2,7 @@
 Run Eta everywhere.
 > This is possible because Eta Core is very thin thign and [no_std].
 
-# CLI
+# CLI [native]
 ### Usage
 ```
 CLI for the Eta calculus
@@ -30,7 +30,7 @@ cargo build -p eta-cli --release
 ```
 > Note: `--target` may be specified for crosscompilation.
 
-# Embedded devices
+# Embedded devices [native]
 This is very specific to the `esp32-s2` chip.\
 Why `esp32-s2`? Because that is what i had laying around.
 ![eta_wasm_demo](assets/esp32s2_phy.png)
@@ -42,9 +42,9 @@ cd crates/embedded
 cargo run --release
 ```
 
-# Browser (WASM)
+# Browser Tab (offline) [WASM]
 ### Use at https://0xE.io
-![eta_wasm_demo](assets/eta_wasm_demo.png)
+![eta_wasm_demo](assets/eta_browser_demo.png)
 
 ### Build
 ```
@@ -56,8 +56,8 @@ cargo build -p eta-wasm --target wasm32-unknown-unknown --release
 make -C crates/wasm deploy # this auto builds first then deploys to cf workers
 ```
 
-# Linux kernel driver
+# Email Server (CF Worker) [WASM]
 > Under heavy WIP.
 
-# Email server
+# Linux kernel driver
 > Under heavy WIP.
