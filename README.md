@@ -44,6 +44,7 @@ cargo run --release
 # Browser Tab (offline) [WASM]
 ### Use at https://0xE.io
 ![eta_wasm_demo](assets/eta_browser_demo.png)
+⚠️ **TODO**: Switch from `lisp-mode` to custom `eta-mode` for highlighting code.
 
 ### Build
 ```
