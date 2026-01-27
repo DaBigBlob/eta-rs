@@ -140,23 +140,20 @@
           editor.session.setOptions({
             useWorker: true,
             wrap: true,
+            tabSize: 2,
+            navigateWithinSoftTabs: true,
             wrapMethod: "code",
             newLineMode: "unix"
           });
           editor.setTheme("ace/theme/gruvbox");
           editor.setOptions({
             showPrintMargin: false,
-            wrap: true,
             displayIndentGuides: true,
             highlightActiveLine: true,
             highlightSelectedWord: true,
             showGutter: true,
             fixedWidthGutter: true,
             readOnly: false,
-            enableLiveAutocompletion: true,
-            enableSnippets: true,
-            tabSize: 2,
-            navigateWithinSoftTabs: true,
             fadeFoldWidgets: true,
             showFoldWidgets: true,
           });
