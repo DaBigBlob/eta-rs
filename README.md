@@ -53,11 +53,22 @@ cargo build -p eta-wasm --target wasm32-unknown-unknown --release
 
 ### Deploy
 ```bash
-make -C crates/wasm deploy # this auto builds first then deploys to cf workers
+make -C crates/wasm deploy-web # this auto builds first then deploys to cf workers
 ```
 
 # Email Server (CF Worker) [WASM]
-> Under heavy WIP.
+### Email at `eval@0xE.io`
+<!-- ![eta_wasm_demo](assets/eta_browser_demo.png) -->
+
+### Build
+```
+cargo build -p eta-wasm --target wasm32-unknown-unknown --release
+```
+
+### Deploy
+```bash
+make -C crates/wasm deploy-mail # this auto builds first then deploys to cf workers
+```
 
 # Linux kernel driver
 > Under heavy WIP.
