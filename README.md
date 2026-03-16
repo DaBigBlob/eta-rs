@@ -41,8 +41,9 @@ cd crates/embedded
 cargo run --release
 ```
 
-# Browser Tab (offline) [WASM]
+# Browser Tab [WASM]
 ### Use at https://0xE.io
+Works completely offline!
 ![eta_wasm_demo](assets/eta_browser_demo.png)
 > **TODO**: Switch from `lisp-mode` to custom `eta-mode` for highlighting code.
 
