@@ -57,8 +57,8 @@ cargo build -p eta-wasm --target wasm32-unknown-unknown --release
 make -C crates/wasm deploy-web # this auto builds first then deploys to cf workers
 ```
 
-# Email Server (CF Worker) [WASM]
-### Email to [eval@0xE.io](mailto:eval@0xE.io)
+# Email Server
+### Email Eta-expression to [eval@0xE.io](mailto:eval@0xE.io) to get it evaluated
 ![eta_wasm_demo](assets/eta_email_demo.png)
 ⚠️ **Note**: The reply may be placed in your junk folder.
 
