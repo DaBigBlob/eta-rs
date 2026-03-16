@@ -42,7 +42,7 @@ cd crates/embedded
 cargo run --release
 ```
 
-# Browser Tab [WASM]
+# Web Browser [WASM]
 ### Use at https://0xE.io
 Works completely offline!
 ![eta_wasm_demo](assets/eta_browser_demo.png)
@@ -59,7 +59,7 @@ make -C crates/wasm deploy-web # this auto builds first then deploys to cf worke
 ```
 
 # Email Server
-### Email Eta-expression to [eval@0xE.io](mailto:eval@0xE.io) to get it evaluated
+### Email Eta-expression to [eval@0xE.io](mailto:eval@0xE.io) to get it evaluated!
 ![eta_wasm_demo](assets/eta_email_demo.png)
 ⚠️ **Note**: The reply may be placed in your junk folder.
 
