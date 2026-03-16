@@ -1,6 +1,14 @@
 # Platform specific Human-Interfaces for Eta-Core
-Run [Eta](https://github.com/DaBigBlob/eta-core) everywhere.\
-ℹ️ **Note**: Please see [Eta](https://github.com/DaBigBlob/eta-core) for more context on what the Eta language is.
+Run [Eta](https://github.com/DaBigBlob/eta-core) everywhere.
+
+# Syntax/Semantics TLDR
+Please see [Eta Core README](https://github.com/DaBigBlob/eta-core?tab=readme-ov-file#eta-core-no_std) for more information on Eta.
+- **`S-Pair`**: Every program is a `S-Pair` i.e. an `S-expression` with exactly two members. This just the default surface syntax and is completely separate from the actual (AST) evaluator, and hence cna be pretty trivially changed.
+- **Keywords**: There are no keywords in this programming language!
+- **Metacircularity**: The Eta evaluator is also just a program of the Eta language.
+- **Fundamental Axioms/primitives**: The Eta language has 2 axioms (i.e. inhabitants of the lowest Type universe):
+    - The (existence of) evaluator itself (called Eta).
+    - The trivial O(1) computation/evaluation (called Omicron).
 
 # CLI [native]
 ### Usage
