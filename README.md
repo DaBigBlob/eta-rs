@@ -30,8 +30,8 @@ cargo build -p eta-cli --release
 ℹ️ **Note**: `--target` may be specified for crosscompilation.
 
 # Embedded devices [native]
-This is very specific to the `esp32-s2` chip.\
-Why `esp32-s2`? Because that is what i had laying around.
+Code under `crates/embedded` is very specific to the `esp32-s2` chip (because thats what I had laying around).\
+ℹ️ **Note**: It is extremely trivial to port to other embedded devices because of the extremely freestanding nature of the Eta interpreter.
 ![eta_wasm_demo](assets/esp32s2_phy.png)
 ![eta_wasm_demo](assets/eta_esp32s2_demo.png)
 
