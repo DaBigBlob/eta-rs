@@ -1,5 +1,4 @@
-# Platform specific Human-Interfaces for Eta-Core
-Run [Eta](https://github.com/DaBigBlob/eta-core) everywhere.
+# Port of [Eta](https://github.com/DaBigBlob/eta-core) language to *everywhere*
 
 # Syntax/Semantics TLDR
 Please see [Eta Core README](https://github.com/DaBigBlob/eta-core?tab=readme-ov-file#eta-core-no_std) for more information on Eta.
