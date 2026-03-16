@@ -10,7 +10,7 @@ Please see [Eta Core README](https://github.com/DaBigBlob/eta-core?tab=readme-ov
     - The trivial O(1) computation/evaluation (called Omicron).
 
 
-ℹ️ **Note**: In the following demos, the output contains a `I:` part (input) and a `E:` part (evaluated), separated by newline. `I:` part (input) and a `E:` part (evaluated), separated by newline. `I:` is the Eta expression the parser understood from the actual input. `E:` part is what is returned from the evaluator.
+ℹ️ **Note**: In the following demos, the output contains a `I:` part (input) and a `E:` part (evaluated), separated by newline. `I:` is the Eta expression the parser understood from the actual input. `E:` part is what is returned from the evaluator.
 
 # CLI [native]
 ### Usage
