@@ -1,5 +1,6 @@
 # Platform specific Human-Interfaces for Eta-Core
-Run [Eta](https://github.com/DaBigBlob/eta-core) everywhere.
+Run [Eta](https://github.com/DaBigBlob/eta-core) everywhere.\
+ℹ️ **Note**: Please see [Eta](https://github.com/DaBigBlob/eta-core) for more context on what the Eta language is.
 
 # CLI [native]
 ### Usage
