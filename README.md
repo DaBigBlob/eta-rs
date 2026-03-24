@@ -3,7 +3,8 @@
 # Syntax/Semantics TLDR
 Please see [Eta Core README](https://github.com/DaBigBlob/eta-core?tab=readme-ov-file#eta-core-no_std) for more information on Eta.
 - **`S-Pair`**: Every program is a `S-Pair` i.e. an `S-expression` with exactly two members. This just the default surface syntax and is completely separate from the actual (AST) evaluator, and hence cna be pretty trivially changed.
-- **Keywords**: There are no keywords in this programming language!
+- **Evaluation**: The evaluation (on AST) is similar to untyped lambda calculus (with De Bruijn indices) *except*, "beta-reduction" only takes place if the binding "variable"/Structure is a Super-Structure/Type of the argument (also a Structure).
+- **Keywords**: There are no keywords in this programming language! This is purely structural calculus.
 - **Metacircularity**: The Eta evaluator is also just a program of the Eta language.
 - **Fundamental Axioms/primitives**: The Eta language has 2 axioms (i.e. opaque Types/Structures):
     - The (existence of) evaluator itself (called Eta).
