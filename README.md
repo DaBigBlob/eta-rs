@@ -1,13 +1,13 @@
-# Port of [Eta](https://github.com/DaBigBlob/eta-core) language to *everywhere*
+# Port of [Eta](https://github.com/DaBigBlob/eta-core) structural combinator calculus to *everywhere*
 
 # Syntax/Semantics TLDR
 Please see [Eta Core README](https://github.com/DaBigBlob/eta-core?tab=readme-ov-file#eta-core-no_std) for more information on Eta.
 - **`S-Pair`**: Every program is a `S-Pair` i.e. an `S-expression` with exactly two members. This just the default surface syntax and is completely separate from the actual (AST) evaluator, and hence cna be pretty trivially changed.
 - **Keywords**: There are no keywords in this programming language!
 - **Metacircularity**: The Eta evaluator is also just a program of the Eta language.
-- **Fundamental Axioms/primitives**: The Eta language has 2 axioms (i.e. inhabitants of the lowest Type universe):
+- **Fundamental Axioms/primitives**: The Eta language has 2 axioms (i.e. opaque Types/Structures):
     - The (existence of) evaluator itself (called Eta).
-    - The trivial O(1) computation/evaluation (called Omicron).
+    - The (existence of) trivial (no-op) O(1) computation/evaluation (called Omicron).
 
 
 ℹ️ **Note**: In the following demos, the output contains a `I:` part (input) and a `E:` part (evaluated), separated by newline. `I:` is the Eta expression the parser understood from the actual input. `E:` part is what is returned from the evaluator.
